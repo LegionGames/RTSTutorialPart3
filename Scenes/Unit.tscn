@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Frames/Knight/knight_idle_forward.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Sprites/game/units/knight/selected/selected.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Unit.gd" type="Script" id=3]
+[ext_resource path="res://Material/player_unit_material.tres" type="Material" id=4]
+[ext_resource path="res://Scenes/UnitSM.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.37922
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 90.7623
+
+[node name="Unit" type="KinematicBody2D" groups=[
+"unit",
+]]
+material = ExtResource( 4 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 11 )
+shape = SubResource( 1 )
+
+[node name="Selected" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+use_parent_material = true
+frames = ExtResource( 1 )
+frame = 1
+playing = true
+
+[node name="StopTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="UnitSM" parent="." instance=ExtResource( 5 )]
+
+[node name="VisionRange" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionRange"]
+position = Vector2( 0, 11 )
+shape = SubResource( 2 )
+
+[node name="Rays" type="Node2D" parent="."]
+visible = false
+position = Vector2( 0, 11 )
+
+[node name="RayFront" type="RayCast2D" parent="Rays"]
+enabled = true
+cast_to = Vector2( 40, 0 )
+collision_mask = 2
+
+[node name="RayRight" type="RayCast2D" parent="Rays"]
+rotation = 0.523599
+enabled = true
+cast_to = Vector2( 40, 0 )
+collision_mask = 2
+
+[node name="RayLeft" type="RayCast2D" parent="Rays"]
+rotation = -0.523599
+enabled = true
+cast_to = Vector2( 40, 0 )
+collision_mask = 2
+
+[node name="RayRight2" type="RayCast2D" parent="Rays"]
+rotation = 1.0472
+enabled = true
+cast_to = Vector2( 40, 0 )
+collision_mask = 2
+
+[node name="RayLeft2" type="RayCast2D" parent="Rays"]
+rotation = -1.0472
+enabled = true
+cast_to = Vector2( 40, 0 )
+collision_mask = 2
+[connection signal="animation_finished" from="AnimatedSprite" to="UnitSM" method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="StopTimer" to="UnitSM" method="_on_StopTimer_timeout"]
+[connection signal="body_entered" from="VisionRange" to="." method="_on_VisionRange_body_entered"]
+[connection signal="body_exited" from="VisionRange" to="." method="_on_VisionRange_body_exited"]

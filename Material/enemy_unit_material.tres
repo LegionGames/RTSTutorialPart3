@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 curr_col = texture(TEXTURE, UV);
+	if (curr_col == vec4(195.0/255.0, 163.0/255.0, 138.0/255.0, 1)) {
+		COLOR = vec4(129.0/255.0, 98.0/255.0, 113.0/255.0, 1);
+	} else {
+		COLOR = curr_col
+	}
+}"
+
+[resource]
+shader = SubResource( 2 )

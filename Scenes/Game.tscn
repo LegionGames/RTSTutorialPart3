@@ -1,0 +1,367 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/game/tiles/grass/simple/simple_grass.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Unit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/SelectDraw.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/MoveAnimation.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/game/tiles/boulder/simple/simple_boulder.png" type="Texture" id=6]
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "simple_grass.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/navigation = SubResource( 3 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "simple_boulder.png 1"
+1/texture = ExtResource( 6 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 32, 32 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 1 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Navigation2D"]
+tile_set = SubResource( 2 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 3
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( -65533, 0, 0, -65531, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 65553, 0, 0, 65554, 0, 0, 65555, 0, 0, 65556, 0, 0, 65557, 0, 0, 65558, 0, 0, 65559, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 0, 0, 131090, 0, 0, 131091, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 196625, 0, 0, 196626, 0, 0, 196627, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 262160, 0, 0, 262161, 0, 0, 262162, 0, 0, 262163, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 1, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 1, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 1, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 1, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 1, 0, 458766, 0, 0, 458767, 0, 0, 458768, 0, 0, 458769, 0, 0, 458770, 0, 0, 458771, 0, 0, 458772, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 720895, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655379, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 786433, 0, 0, 786435, 0, 0 )
+
+[node name="MoveAnimation" parent="." instance=ExtResource( 5 )]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Unit22" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 608, 184 )
+
+[node name="Unit26" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 560, 152 )
+
+[node name="Unit27" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 560, 200 )
+
+[node name="Unit30" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 616, 264 )
+
+[node name="Unit36" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 584, 152 )
+
+[node name="Unit38" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 560, 176 )
+
+[node name="Unit44" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 584, 200 )
+
+[node name="Unit46" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 576, 224 )
+
+[node name="Unit52" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 568, 248 )
+
+[node name="Unit37" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 604.918, 154.713 )
+
+[node name="Unit39" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 584, 176 )
+
+[node name="Unit45" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 603.028, 215.189 )
+
+[node name="Unit47" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 603.028, 245.427 )
+
+[node name="Unit53" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 584, 256 )
+
+[node name="Unit24" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 544, 256 )
+
+[node name="Unit28" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 496, 224 )
+
+[node name="Unit29" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 496, 272 )
+
+[node name="Unit33" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 552, 336 )
+
+[node name="Unit40" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 520, 224 )
+
+[node name="Unit41" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 496, 248 )
+
+[node name="Unit48" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 520, 272 )
+
+[node name="Unit49" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 512, 296 )
+
+[node name="Unit54" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 504, 320 )
+
+[node name="Unit42" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 540.918, 226.713 )
+
+[node name="Unit43" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 520, 248 )
+
+[node name="Unit23" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 600, 56 )
+
+[node name="Unit31" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 552, 24 )
+
+[node name="Unit32" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 552, 72 )
+
+[node name="Unit34" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 608, 136 )
+
+[node name="Unit56" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 576, 24 )
+
+[node name="Unit57" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 552, 48 )
+
+[node name="Unit58" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 576, 72 )
+
+[node name="Unit59" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 568, 96 )
+
+[node name="Unit60" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 560, 120 )
+
+[node name="Unit61" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 596.918, 26.713 )
+
+[node name="Unit62" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 576, 48 )
+
+[node name="Unit63" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 595.028, 87.189 )
+
+[node name="Unit64" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 595.028, 117.427 )
+
+[node name="Unit65" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 576, 128 )
+
+[node name="Unit25" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 536, 128 )
+
+[node name="Unit35" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 488, 96 )
+
+[node name="Unit66" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 488, 144 )
+
+[node name="Unit67" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 512, 96 )
+
+[node name="Unit68" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 488, 120 )
+
+[node name="Unit69" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 512, 144 )
+
+[node name="Unit70" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 532.918, 98.713 )
+
+[node name="Unit71" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 512, 120 )
+
+[node name="Unit50" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 539.028, 287.189 )
+
+[node name="Unit51" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 539.028, 317.427 )
+
+[node name="Unit55" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 520, 328 )
+
+[node name="Unit110" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 67.523, 140.35 )
+unit_owner = 1
+
+[node name="Unit113" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 70.0429, 167.439 )
+unit_owner = 1
+
+[node name="Unit122" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 68.153, 197.677 )
+unit_owner = 1
+
+[node name="Unit125" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 68.1531, 227.915 )
+unit_owner = 1
+
+[node name="Unit134" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 66.2631, 258.153 )
+unit_owner = 1
+
+[node name="Unit137" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 63.7434, 289.021 )
+unit_owner = 1
+
+[node name="Unit116" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 107.78, 144 )
+unit_owner = 1
+
+[node name="Unit117" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 110.3, 171.089 )
+unit_owner = 1
+
+[node name="Unit128" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 108.41, 201.327 )
+unit_owner = 1
+
+[node name="Unit129" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 108.41, 231.565 )
+unit_owner = 1
+
+[node name="Unit140" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 106.52, 261.803 )
+unit_owner = 1
+
+[node name="Unit141" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 104, 292.671 )
+unit_owner = 1
+
+[node name="Unit111" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 323.78, 128 )
+unit_owner = 1
+
+[node name="Unit114" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 326.3, 155.089 )
+unit_owner = 1
+
+[node name="Unit123" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 324.41, 185.327 )
+unit_owner = 1
+
+[node name="Unit126" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 324.41, 215.565 )
+unit_owner = 1
+
+[node name="Unit135" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 322.52, 245.803 )
+unit_owner = 1
+
+[node name="Unit138" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 320, 276.671 )
+unit_owner = 1
+
+[node name="Unit112" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 283.78, 128 )
+unit_owner = 1
+
+[node name="Unit115" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 286.3, 155.089 )
+unit_owner = 1
+
+[node name="Unit124" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 284.41, 185.327 )
+unit_owner = 1
+
+[node name="Unit127" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 284.41, 215.565 )
+unit_owner = 1
+
+[node name="Unit136" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 282.52, 245.803 )
+unit_owner = 1
+
+[node name="Unit139" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 280, 276.671 )
+unit_owner = 1
+
+[node name="Unit118" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 387.78, 128 )
+unit_owner = 1
+
+[node name="Unit119" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 390.3, 155.089 )
+unit_owner = 1
+
+[node name="Unit130" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 388.41, 185.327 )
+unit_owner = 1
+
+[node name="Unit131" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 388.41, 215.565 )
+unit_owner = 1
+
+[node name="Unit142" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 386.52, 245.803 )
+unit_owner = 1
+
+[node name="Unit143" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 384, 276.671 )
+unit_owner = 1
+
+[node name="Unit120" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 347.78, 128 )
+unit_owner = 1
+
+[node name="Unit121" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 350.3, 155.089 )
+unit_owner = 1
+
+[node name="Unit132" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 348.41, 185.327 )
+unit_owner = 1
+
+[node name="Unit133" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 348.41, 215.565 )
+unit_owner = 1
+
+[node name="Unit144" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 346.52, 245.803 )
+unit_owner = 1
+
+[node name="Unit145" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 344, 276.671 )
+unit_owner = 1
+
+[node name="SelectDraw" type="Node2D" parent="."]
+script = ExtResource( 4 )
